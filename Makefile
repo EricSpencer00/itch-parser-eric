@@ -11,7 +11,7 @@ LDFLAGS ?=
 
 SRC := $(wildcard *.c)
 OBJ := $(SRC:.c=.o)
-TARGET := deciphering
+TARGET := deciphering itto_parser
 
 .PHONY: all debug clean run valgrind help
 
@@ -21,7 +21,10 @@ all: $(TARGET)
 debug: CFLAGS += -g -O0 -DDEBUG
 debug: $(TARGET)
 
-$(TARGET): $(OBJ)
+deciphering: deciphering.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+itto_parser: itto_parser.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 %.o: %.c
