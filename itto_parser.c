@@ -437,7 +437,7 @@ int main() {
     parse_message(msgA, sizeof(msgA));
     parse_message(msgj, sizeof(msgj));
     parse_message(msgJ, sizeof(msgJ));
-    parse_message(msgE, sizeof(msgE));
+    // parse_message(msgE, sizeof(msgE));
     parse_message(msgC, sizeof(msgC));
     parse_message(msgX, sizeof(msgX));
     parse_message(msgu, sizeof(msgu));
