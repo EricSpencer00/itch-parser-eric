@@ -11,7 +11,7 @@ LDFLAGS ?=
 
 SRC := $(wildcard *.c)
 OBJ := $(SRC:.c=.o)
-TARGET := deciphering itto_parser
+TARGET := deciphering itto_parser itch_replay_server itch_client generate_sample_itch
 
 .PHONY: all debug clean run valgrind help
 
@@ -25,6 +25,15 @@ deciphering: deciphering.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 itto_parser: itto_parser.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+itch_replay_server: itch_replay_server.o
+	$(CC) $(LDFLAGS) -o $@ $^ -lpthread -lz
+
+itch_client: itch_client.o itch_parser.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+generate_sample_itch: generate_sample_itch.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 %.o: %.c

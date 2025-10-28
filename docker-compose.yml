@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  itch-replay-server:
+    build: .
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./data:/data:ro
+    environment:
+      - ITCH_FILE=/data/sample.itch
+      - PORT=9999
+      - SPEED=1.0
+    command: ["./itch_replay_server", "/data/sample.itch", "9999", "1.0"]
+    restart: unless-stopped
+
+networks:
+  default:
+    name: itch-network
